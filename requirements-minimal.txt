@@ -1,0 +1,15 @@
+# Minimal requirements for Python 3.13
+# Install these first, then install full requirements
+
+# Core dependencies that MUST work
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+sqlalchemy>=2.0.0
+requests>=2.31.0
+colorlog>=6.8.0
+
+# Try these after core deps work
+aiohttp>=3.9.0
+anthropic>=0.8.0
+ccxt>=4.2.25

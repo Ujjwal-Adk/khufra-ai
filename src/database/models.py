@@ -274,7 +274,7 @@ class SystemLog(Base):
     # Additional context
     exception_type = Column(String(100), nullable=True)
     stack_trace = Column(Text, nullable=True)
-    metadata = Column(Text, nullable=True)  # JSON string
+    context_data = Column(Text, nullable=True)  # JSON string (renamed from metadata to avoid SQLAlchemy conflict)
 
     def __repr__(self):
         return f"<SystemLog(level={self.level}, module={self.module}, time={self.timestamp})>"
