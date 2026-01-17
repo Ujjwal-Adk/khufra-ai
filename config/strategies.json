@@ -1,0 +1,185 @@
+{
+  "_comment": "Project Khufra AI - Trading Strategies Configuration",
+  "_last_updated": "2026-01-16",
+  "_waiting_for": "Anjing to provide his proven trading strategies",
+
+  "strategies": [
+    {
+      "id": "strategy_001",
+      "name": "Example Breakout Strategy",
+      "description": "This is a template. Replace with actual strategies from Anjing.",
+      "enabled": false,
+      "market_conditions": "trending",
+      "timeframe": "15m",
+      "trading_pairs": ["BTC/USDT", "ETH/USDT"],
+
+      "entry_rules": {
+        "indicators": [
+          {
+            "name": "RSI",
+            "period": 14,
+            "condition": "greater_than",
+            "value": 50
+          },
+          {
+            "name": "price",
+            "condition": "breaks_above",
+            "level": "resistance"
+          }
+        ],
+        "volume_condition": {
+          "type": "spike",
+          "threshold_multiplier": 1.5,
+          "period": 20
+        },
+        "confirmation": {
+          "required": true,
+          "signals": ["MACD_crossover", "volume_spike"]
+        }
+      },
+
+      "exit_rules": {
+        "take_profit": {
+          "type": "percentage",
+          "value": 5.0,
+          "comment": "5% gain"
+        },
+        "stop_loss": {
+          "type": "percentage",
+          "value": 2.0,
+          "comment": "2% loss"
+        },
+        "trailing_stop": {
+          "enabled": true,
+          "activation_percent": 3.0,
+          "trail_percent": 1.5
+        }
+      },
+
+      "risk_management": {
+        "position_size_percent": 2.0,
+        "max_risk_per_trade": 2.0,
+        "risk_reward_ratio": 2.5
+      },
+
+      "metadata": {
+        "win_rate_estimate": 0.0,
+        "avg_profit_percent": 0.0,
+        "avg_loss_percent": 0.0,
+        "total_trades": 0,
+        "notes": "Template strategy - waiting for Anjing's input"
+      }
+    },
+
+    {
+      "id": "strategy_002",
+      "name": "Example Reversal Strategy",
+      "description": "Another template. Replace with Anjing's strategies.",
+      "enabled": false,
+      "market_conditions": "ranging",
+      "timeframe": "1h",
+      "trading_pairs": ["BTC/USDT"],
+
+      "entry_rules": {
+        "indicators": [
+          {
+            "name": "RSI",
+            "period": 14,
+            "condition": "less_than",
+            "value": 30,
+            "comment": "Oversold condition"
+          },
+          {
+            "name": "Bollinger_Bands",
+            "condition": "price_touches_lower_band"
+          }
+        ],
+        "volume_condition": {
+          "type": "normal",
+          "threshold_multiplier": 1.0,
+          "period": 20
+        },
+        "confirmation": {
+          "required": true,
+          "signals": ["bullish_divergence"]
+        }
+      },
+
+      "exit_rules": {
+        "take_profit": {
+          "type": "percentage",
+          "value": 4.0
+        },
+        "stop_loss": {
+          "type": "below_support",
+          "value": 2.0
+        },
+        "trailing_stop": {
+          "enabled": false
+        }
+      },
+
+      "risk_management": {
+        "position_size_percent": 2.0,
+        "max_risk_per_trade": 2.0,
+        "risk_reward_ratio": 2.0
+      },
+
+      "metadata": {
+        "win_rate_estimate": 0.0,
+        "avg_profit_percent": 0.0,
+        "avg_loss_percent": 0.0,
+        "total_trades": 0,
+        "notes": "Template strategy - waiting for Anjing's input"
+      }
+    }
+  ],
+
+  "global_settings": {
+    "max_concurrent_strategies": 2,
+    "min_confidence_score": 0.7,
+    "require_ai_confirmation": true,
+    "require_news_sentiment_check": true
+  },
+
+  "technical_indicators": {
+    "RSI": {
+      "period": 14,
+      "overbought": 70,
+      "oversold": 30
+    },
+    "MACD": {
+      "fast_period": 12,
+      "slow_period": 26,
+      "signal_period": 9
+    },
+    "Moving_Averages": {
+      "SMA_fast": 20,
+      "SMA_slow": 50,
+      "EMA_fast": 12,
+      "EMA_slow": 26
+    },
+    "Bollinger_Bands": {
+      "period": 20,
+      "std_dev": 2
+    },
+    "Volume": {
+      "period": 20
+    }
+  },
+
+  "notes_for_anjing": {
+    "instructions": [
+      "Please document your 3-5 best trading strategies here",
+      "For each strategy, provide:",
+      "1. Clear entry rules (which indicators, what values)",
+      "2. Clear exit rules (take profit, stop loss, trailing stop)",
+      "3. Market conditions where it works best",
+      "4. Preferred timeframes",
+      "5. Historical win rate if you know it",
+      "6. Any special notes or psychology behind the strategy"
+    ],
+    "format_example": "See strategy_001 and strategy_002 above as templates",
+    "contact": "Share these in Discord #strategy-discussion channel or update this file directly"
+  }
+}

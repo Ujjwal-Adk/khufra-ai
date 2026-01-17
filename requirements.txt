@@ -1,0 +1,67 @@
+# Project Khufra AI - Python Dependencies
+# Updated: January 16, 2026
+
+# Exchange Integration
+ccxt==4.2.25                    # Universal crypto exchange connector
+
+# Data Analysis & Mathematical Operations
+pandas==2.1.4                   # Data manipulation and analysis
+numpy==1.26.3                   # Mathematical calculations
+pandas-ta==0.3.14b              # Technical analysis indicators
+
+# API & Web Requests
+requests==2.31.0                # HTTP requests for APIs
+aiohttp==3.9.1                  # Async HTTP client/server
+asyncio-throttle==1.0.2         # Rate limiting for async operations
+
+# AI Integration
+anthropic==0.8.1                # Claude AI API integration
+
+# Web Scraping & Automation
+beautifulsoup4==4.12.2          # Web scraping for news
+selenium==4.16.0                # Browser automation for TradingView
+webdriver-manager==4.0.1        # Automatic webdriver management
+lxml==5.0.0                     # HTML/XML parser
+
+# Notifications & Communication
+python-telegram-bot==20.7       # Telegram bot API
+discord.py==2.3.2               # Discord bot API (optional)
+
+# Task Scheduling
+schedule==1.2.1                 # Task scheduling
+APScheduler==3.10.4             # Advanced scheduling capabilities
+
+# Database
+sqlalchemy==2.0.25              # Database ORM
+alembic==1.13.1                 # Database migrations
+
+# Environment & Configuration
+python-dotenv==1.0.0            # Environment variables management
+pydantic==2.5.3                 # Data validation
+pydantic-settings==2.1.0        # Settings management
+
+# Logging & Monitoring
+colorlog==6.8.0                 # Colored logging output
+python-json-logger==2.0.7       # JSON formatted logs
+
+# Utilities
+python-dateutil==2.8.2          # Date/time utilities
+pytz==2023.3.post1              # Timezone handling
+tenacity==8.2.3                 # Retry logic for failed operations
+
+# Testing
+pytest==7.4.4                   # Testing framework
+pytest-asyncio==0.23.3          # Async testing support
+pytest-cov==4.1.0               # Code coverage
+pytest-mock==3.12.0             # Mocking support
+
+# Code Quality
+black==23.12.1                  # Code formatter
+flake8==7.0.0                   # Code linter
+mypy==1.8.0                     # Type checking
+
+# Security
+cryptography==41.0.7            # Encryption utilities
+
+# Optional: News APIs
+newsapi-python==0.2.7           # NewsAPI client (optional)

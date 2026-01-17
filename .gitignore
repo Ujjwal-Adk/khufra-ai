@@ -205,3 +205,56 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ============================================
+# PROJECT KHUFRA AI - SECURITY CRITICAL
+# ============================================
+# API Keys and Secrets - NEVER COMMIT!
+config/api_keys.py
+**/secrets/
+**/credentials/
+*.pem
+*.key
+*.cert
+.env.*
+!.env.example
+
+# ============================================
+# PROJECT KHUFRA AI - DATA & LOGS
+# ============================================
+# Database files
+data/*.db
+data/trades.db
+*.sqlite
+*.sqlite3
+
+# Log files
+data/logs/*.log
+logs/
+
+# Trading data (keep private)
+data/trades/
+data/backtest/
+data/historical/
+
+# ============================================
+# PROJECT KHUFRA AI - MISC
+# ============================================
+# Backup files
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# Test output
+test_output/
+temp/
+
+# OS specific
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+
+# Cloud credentials
+gcp-credentials.json
+.gcloudignore
