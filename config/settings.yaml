@@ -1,0 +1,127 @@
+# ═══════════════════════════════════════════════════════════
+# KHUFRA TRADING SYSTEM CONFIG v2.0
+# All strategy params, thresholds, and operational settings
+# Secrets (API keys) stay in .env — NEVER put secrets here
+# ═══════════════════════════════════════════════════════════
+
+system:
+  mode: paper              # 'paper' | 'live'
+  symbol: BTCUSDT
+  exchange: bitget
+  log_level: INFO
+  timezone: America/Edmonton
+
+# ─── Regime Detection (Section 3) ─────────────────────────
+regime:
+  adx_trending_threshold: 25       # ADX > 25 = trending market
+  adx_ranging_threshold: 20        # ADX < 20 = ranging/dead market
+  atr_volatile_multiplier: 1.5     # current ATR > 1.5x avg = volatile
+  atr_dead_multiplier: 0.5         # current ATR < 0.5x avg = dead
+  bb_squeeze_percentile: 10        # BB width in bottom 10% = squeeze/dead
+  ema_fast: 21
+  ema_slow: 50
+  confirmation_candles: 3          # candles needed to confirm regime change
+  primary_timeframe: 1h
+  confirmation_timeframe: 15m
+
+# ─── Confidence Scoring (Section 5) ───────────────────────
+confidence:
+  min_score_to_trade: 65
+  min_score_watch_zone: 80         # higher threshold during watch-only sessions
+  weights:
+    regime_alignment: 20
+    behavioral_pattern: 25
+    whale_onchain: 20              # defaults to 10 (neutral) until Phase 3
+    order_book: 15
+    funding_rate: 10
+    volume: 10
+
+# ─── Risk Management (Section 8) ──────────────────────────
+risk:
+  base_risk_pct: 0.02              # 2% base risk per trade
+  max_risk_pct: 0.04               # 4% absolute max per trade
+  max_daily_drawdown: 0.05         # 5% daily drawdown limit
+  max_leverage: 5                  # hard cap until 30+ days profitable
+  max_concurrent_positions: 2
+  stale_data_timeout_seconds: 30   # halt if no data for 30s
+  error_circuit_breaker: 3         # halt after 3 consecutive API failures
+  stop_after_consecutive_losses: 3
+
+  # Confidence-based position sizing multipliers
+  confidence_multipliers:
+    conservative: 0.6              # score 65-74
+    standard: 1.0                  # score 75-84
+    high_conviction: 1.75          # score 85+
+
+  # Regime-based position sizing multipliers
+  regime_multipliers:
+    trending_up: 1.0
+    trending_down: 1.0
+    ranging: 0.8
+    volatile: 0.5
+    transition: 0.5
+    dead: 0.0
+
+# ─── Kill Zones (Section 7) ───────────────────────────────
+kill_zones:
+  active:
+    - name: london_open
+      start: '07:00'
+      end: '10:00'
+    - name: ny_overlap
+      start: '13:00'
+      end: '17:00'
+    - name: ny_afternoon
+      start: '17:00'
+      end: '20:00'
+  watch_only:
+    - name: asian
+      start: '00:00'
+      end: '04:00'
+
+# ─── Behavioral Pattern Detection (Section 4) ─────────────
+behavioral:
+  stop_hunt:
+    min_volume_spike: 3.0           # 3x avg volume on wick candle
+    max_reclaim_candles: 3          # must reclaim level within 3 candles
+    min_break_pct: 0.003            # must break level by at least 0.3%
+  liquidation_cascade:
+    min_oi_drop_pct: 0.03           # 3% OI drop during cascade
+    min_liquidation_volume: 10000000  # $10M in liquidations
+  fomo_trap:
+    no_followthrough_candles: 3     # breakout fails within 3 candles
+    volume_decline_pct: 0.4         # volume drops 40% after initial spike
+  funding_extreme:
+    bullish_crowd_threshold: 0.0005  # +0.05% = overcrowded longs (bearish)
+    bearish_crowd_threshold: -0.0005 # -0.05% = overcrowded shorts (bullish)
+
+# ─── Market Memory (Section 6) ────────────────────────────
+market_memory:
+  rolling_window_days: 7
+  decay_halflife_days: 7
+  purge_after_days: 30
+  min_significance: 0.2
+
+# ─── Learning Loop (Section 10) ───────────────────────────
+learning_loop:
+  schedule: 'sunday_00:00_utc'
+  auto_apply: false                # NEVER auto-apply weight changes
+  min_trades_for_analysis: 20
+
+# ─── AI Advisor (Optional) ────────────────────────────────
+ai_advisor:
+  enabled: false                   # toggle Claude AI confirmation layer
+  model: claude-sonnet-4-6-20250514
+  max_tokens: 1024
+  confirm_above_score: 75          # only ask AI for trades scoring 75+
+
+# ─── Notifications ────────────────────────────────────────
+notifications:
+  telegram:
+    enabled: true
+    send_regime_changes: true
+    send_trade_alerts: true
+    send_daily_summary: true
+    send_kill_zone_changes: true
+  discord:
+    enabled: false

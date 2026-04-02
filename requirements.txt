@@ -1,68 +1,45 @@
-# Project Khufra AI - Python Dependencies
-# Updated: January 16, 2026
-# Compatible with Python 3.11-3.13
+# ═══ Khufra Trading System v2.0 Dependencies ═══
+# Python 3.11+
 
-# Exchange Integration
-ccxt>=4.2.25                    # Universal crypto exchange connector
+# ── Async & Networking ──
+aiohttp>=3.9.0
+websockets>=12.0
 
-# Data Analysis & Mathematical Operations
-pandas>=2.1.0                   # Data manipulation and analysis
-numpy>=1.26.0                   # Mathematical calculations
-pandas-ta>=0.3.14b              # Technical analysis indicators
+# ── Data & Analysis ──
+pandas>=2.1.0
+numpy>=1.26.0
+ta>=0.11.0                      # Technical analysis indicators
 
-# API & Web Requests
-requests>=2.31.0                # HTTP requests for APIs
-aiohttp>=3.9.0                  # Async HTTP client/server
-asyncio-throttle>=1.0.2         # Rate limiting for async operations
+# ── Database ──
+sqlalchemy>=2.0.0
 
-# AI Integration
-anthropic>=0.8.0                # Claude AI API integration
+# ── Configuration ──
+pyyaml>=6.0
+python-dotenv>=1.0.0
 
-# Web Scraping & Automation
-beautifulsoup4>=4.12.0          # Web scraping for news
-selenium>=4.16.0                # Browser automation for TradingView
-webdriver-manager>=4.0.0        # Automatic webdriver management
-lxml>=5.0.0                     # HTML/XML parser
+# ── Notifications ──
+python-telegram-bot>=20.7
 
-# Notifications & Communication
-python-telegram-bot>=20.7       # Telegram bot API
-discord.py>=2.3.0               # Discord bot API (optional)
+# ── Scheduling ──
+apscheduler>=3.10.0
 
-# Task Scheduling
-schedule>=1.2.0                 # Task scheduling
-APScheduler>=3.10.0             # Advanced scheduling capabilities
+# ── AI Advisor (Optional) ──
+anthropic>=0.40.0
 
-# Database
-sqlalchemy>=2.0.0               # Database ORM
-alembic>=1.13.0                 # Database migrations
+# ── Logging ──
+colorlog>=6.8.0
 
-# Environment & Configuration
-python-dotenv>=1.0.0            # Environment variables management
-pydantic>=2.5.0                 # Data validation
-pydantic-settings>=2.1.0        # Settings management
+# ── API Server ──
+fastapi>=0.115.0
+uvicorn[standard]>=0.34.0
+python-socketio[asyncio_client]>=5.11.0
 
-# Logging & Monitoring
-colorlog>=6.8.0                 # Colored logging output
-python-json-logger>=2.0.0       # JSON formatted logs
+# ── Utilities ──
+python-dateutil>=2.8.0
+pytz>=2023.3
 
-# Utilities
-python-dateutil>=2.8.0          # Date/time utilities
-pytz>=2023.3                    # Timezone handling
-tenacity>=8.2.0                 # Retry logic for failed operations
-
-# Testing
-pytest>=7.4.0                   # Testing framework
-pytest-asyncio>=0.23.0          # Async testing support
-pytest-cov>=4.1.0               # Code coverage
-pytest-mock>=3.12.0             # Mocking support
-
-# Code Quality
-black>=23.12.0                  # Code formatter
-flake8>=7.0.0                   # Code linter
-mypy>=1.8.0                     # Type checking
-
-# Security
-cryptography>=41.0.0            # Encryption utilities
-
-# Optional: News APIs
-newsapi-python>=0.2.7           # NewsAPI client (optional)
+# ── Development & Testing ──
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+black>=23.12.0
